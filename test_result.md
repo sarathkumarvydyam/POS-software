@@ -101,3 +101,138 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Build a modular Urban Bites MVP with Menu > Cart > Checkout (payments skipped). Modular routers and config endpoints."
+backend:
+  - task: "Config public settings API (/api/config/public)"
+    implemented: true
+    working: NA
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "Implemented public config with brand, tax_rate, payments flag + auto seed on startup."
+  - task: "Menu categories API (/api/menu/categories)"
+    implemented: true
+    working: NA
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "Derives categories from products."
+  - task: "Menu products API (/api/menu/products?category=)"
+    implemented: true
+    working: NA
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "Lists products; supports text search q and category filter."
+  - task: "Cart coupon validation API (/api/cart/validate-coupon)"
+    implemented: true
+    working: NA
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "Validates coupons and returns computed discount for subtotal."
+  - task: "Create order API (/api/orders/)"
+    implemented: true
+    working: NA
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "Prices cart server-side, applies coupon, computes tax/totals, stores order."
+  - task: "Get order API (/api/orders/{id})"
+    implemented: true
+    working: NA
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "Fetch single order by id."
+frontend:
+  - task: "Home/Menu UI with category tabs and product cards"
+    implemented: true
+    working: NA
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "Dark theme, responsive grid, uses Tailwind."
+  - task: "Cart sidebar with totals and coupon apply"
+    implemented: true
+    working: NA
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "LocalStorage cart; totals recalculated; coupon hits backend."
+  - task: "Checkout page and order placement"
+    implemented: true
+    working: NA
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "Collects user info and places order; navigates to order confirmation."
+  - task: "Order confirmation page"
+    implemented: true
+    working: NA
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "low"
+    needs_retesting: false
+    status_history:
+      - working: NA
+        agent: "main"
+        comment: "Displays order id, status, and total."
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Config public settings API (/api/config/public)"
+    - "Menu categories API (/api/menu/categories)"
+    - "Menu products API (/api/menu/products?category=)"
+    - "Cart coupon validation API (/api/cart/validate-coupon)"
+    - "Create order API (/api/orders/)"
+    - "Get order API (/api/orders/{id})"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "Please run backend tests for the listed endpoints. No auth, no payments. Mongo is available via MONGO_URL. All routes are under /api."

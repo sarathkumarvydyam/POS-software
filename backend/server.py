@@ -325,6 +325,10 @@ async def validate_coupon(req: CouponCheckRequest):
     else:
         discount_amount = round(coupon["amount"], 2)
 
+    # Prevent discount from exceeding the order subtotal
+    if discount_amount > req.subtotal:
+        discount_amount = round(req.subtotal, 2)
+
     return {
         "coupon_id": coupon.get("_id"),
         "code": coupon["code"],

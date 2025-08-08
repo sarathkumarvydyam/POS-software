@@ -304,6 +304,14 @@ async def list_products(category: Optional[str] = None, q: Optional[str] = None)
     return docs
 
 
+@menu_router.post("/products")
+async def create_product(product: Product):
+    doc = product.to_mongo()
+    await db.products.insert_one(doc)
+    doc["product_id"] = doc.pop("_id")
+    return doc
+
+
 class CouponCheckRequest(BaseModel):
     code: str
     subtotal: float

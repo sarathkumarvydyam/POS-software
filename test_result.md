@@ -106,70 +106,88 @@ user_problem_statement: "Build a modular Urban Bites MVP with Menu > Cart > Chec
 backend:
   - task: "Config public settings API (/api/config/public)"
     implemented: true
-    working: NA
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: NA
         agent: "main"
         comment: "Implemented public config with brand, tax_rate, payments flag + auto seed on startup."
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: API returns correct JSON structure with brand (Urban Bites), currency (USD), tax_rate (0.08), payments_enabled (false), and hero_image. All required fields present and properly typed."
   - task: "Menu categories API (/api/menu/categories)"
     implemented: true
-    working: NA
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: NA
         agent: "main"
         comment: "Derives categories from products."
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: API returns 2 categories (burgers, coffee) with proper slug and name fields. Categories derived correctly from seeded products."
   - task: "Menu products API (/api/menu/products?category=)"
     implemented: true
-    working: NA
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: NA
         agent: "main"
         comment: "Lists products; supports text search q and category filter."
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: API returns 2 burger products when filtered by category=burgers. Each product has required fields: product_id, name, base_price, images, variants, add_ons. Data structure is correct."
   - task: "Cart coupon validation API (/api/cart/validate-coupon)"
     implemented: true
-    working: NA
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: NA
         agent: "main"
         comment: "Validates coupons and returns computed discount for subtotal."
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: URBAN10 coupon validation works correctly. For subtotal $30, returns discount_type 'percent' and discount_amount $3.0 (10% discount). Calculation is accurate."
   - task: "Create order API (/api/orders/)"
     implemented: true
-    working: NA
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: NA
         agent: "main"
         comment: "Prices cart server-side, applies coupon, computes tax/totals, stores order."
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Order creation successful with 2x Urban Classic Burger + $2 tip. Returns order_id and proper totals structure (subtotal, tax_amount, tip_amount, total). Server-side pricing and tax calculation working correctly."
   - task: "Get order API (/api/orders/{id})"
     implemented: true
-    working: NA
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: NA
         agent: "main"
         comment: "Fetch single order by id."
+      - working: true
+        agent: "testing"
+        comment: "✅ TESTED: Order retrieval successful. Returns complete order data with matching order_id, user_info, order_status, and identical totals from creation. Data persistence verified."
 frontend:
   - task: "Home/Menu UI with category tabs and product cards"
     implemented: true

@@ -240,13 +240,7 @@ metadata:
   run_ui: false
 
 test_plan:
-  current_focus:
-    - "Config public settings API (/api/config/public)"
-    - "Menu categories API (/api/menu/categories)"
-    - "Menu products API (/api/menu/products?category=)"
-    - "Cart coupon validation API (/api/cart/validate-coupon)"
-    - "Create order API (/api/orders/)"
-    - "Get order API (/api/orders/{id})"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -254,3 +248,5 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: "Please run backend tests for the listed endpoints. No auth, no payments. Mongo is available via MONGO_URL. All routes are under /api."
+  - agent: "testing"
+    message: "✅ BACKEND TESTING COMPLETE: All 6 backend API endpoints tested successfully. Created comprehensive backend_test.py with sequential testing. All endpoints return correct data structures and handle business logic properly (pricing, tax calculation, coupon validation, data persistence). No critical issues found. Backend is fully functional and ready for frontend integration."

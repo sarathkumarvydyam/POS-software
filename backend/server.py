@@ -316,7 +316,7 @@ async def validate_coupon(req: CouponCheckRequest):
     if not coupon:
         raise HTTPException(status_code=404, detail="Invalid coupon code")
 
-    if req.subtotal &lt; coupon.get("min_order_value", 0):
+    if req.subtotal < coupon.get("min_order_value", 0):
         raise HTTPException(status_code=400, detail="Subtotal too low for this coupon")
 
     discount_amount = 0.0

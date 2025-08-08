@@ -158,7 +158,7 @@ COFFEE2 = {
 
 async def seed_menu():
     count = await db.products.count_documents({})
-    if count &gt; 0:
+    if count > 0:
         return
 
     products = [

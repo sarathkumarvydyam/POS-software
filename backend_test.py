@@ -9,6 +9,8 @@ import json
 import sys
 from typing import Dict, Any, Optional
 
+import pytest
+
 # Load backend URL from frontend .env
 def get_backend_url():
     try:
@@ -23,8 +25,7 @@ def get_backend_url():
 
 BASE_URL = get_backend_url()
 if not BASE_URL:
-    print("ERROR: Could not find REACT_APP_BACKEND_URL in frontend/.env")
-    sys.exit(1)
+    pytest.skip("Backend URL not configured", allow_module_level=True)
 
 print(f"Testing Urban Bites API at: {BASE_URL}")
 
